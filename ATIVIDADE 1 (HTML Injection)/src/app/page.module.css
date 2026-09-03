@@ -1,0 +1,52 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f4f4f5;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+  
+  .card h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+    color: #18181b;
+  }
+  
+  .card p {
+    margin: 0 0 30px;
+    color: #71717a;
+    font-size: 16px;
+  }
+  
+  .logout {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #18181b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .logout:hover {
+    background: #3f3f46;
+  }
+  
+  .logout:active {
+    transform: scale(0.98);
+  }
+  
