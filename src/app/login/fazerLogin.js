@@ -26,17 +26,8 @@ export async function fazerLogin(prevState, formData) {
     };
   }
 
-  /* 
-    --------------------------------------------------------------------------
-    VULNERABILIDADE (SQL INJECTION):
-    Uso de $queryRawUnsafe concatenando strings diretamente.
-    Se o usuário digitar: admin' --
-    A query montada ignora o resto da verificação de senha no banco.
-    --------------------------------------------------------------------------
-  */
   const query = `SELECT * FROM "User" WHERE usuario = '${usuario}' AND senha = '${senha}'`;
-  
-  // Executa a query sem sanitização
+
   const users = await prisma.$queryRawUnsafe(query);
   const user = users.length > 0 ? users[0] : null;
 
@@ -65,7 +56,6 @@ export async function fazerLogin(prevState, formData) {
     sameSite: "lax",
     path: "/",
   });
-
 
   cookieStore.set("usuarioLogado", "true", {
     httpOnly: true,
