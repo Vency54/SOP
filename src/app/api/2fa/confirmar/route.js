@@ -12,7 +12,6 @@ export async function POST(request) {
 
     const cookieStore = await cookies();
 
-    // Verifica CSRF
     const csrfToken = request.headers.get("X-CSRF-Token");
     const csrfTokenCookie = cookieStore.get("csrfToken")?.value;
 
