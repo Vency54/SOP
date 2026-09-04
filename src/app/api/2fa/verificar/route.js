@@ -12,7 +12,6 @@ export async function POST(request) {
 
     const cookieStore = await cookies();
 
-    // Verificar CSRF
     const csrfToken = request.headers.get("X-CSRF-Token");
     const csrfTokenCookie = cookieStore.get("csrfToken")?.value;
 
@@ -23,7 +22,6 @@ export async function POST(request) {
       );
     }
 
-    // Verificar código
     if (!codigo) {
       return NextResponse.json(
         { mensagem: "Digite o código." },
@@ -31,7 +29,6 @@ export async function POST(request) {
       );
     }
 
-    // Pegar usuário que está aguardando o 2FA
     const usuarioId = cookieStore.get("usuario2FA")?.value;
 
     if (!usuarioId) {
@@ -41,7 +38,6 @@ export async function POST(request) {
       );
     }
 
-    // Buscar usuário
     const usuario = await prisma.user.findUnique({
       where: {
         id: Number(usuarioId),
@@ -55,7 +51,6 @@ export async function POST(request) {
       );
     }
 
-    // Verificar código do Authenticator
     const valido = await verificarCodigo(codigo, usuario.segredo2FA);
 
     if (!valido) {
@@ -65,12 +60,10 @@ export async function POST(request) {
       );
     }
 
-    // Código correto
     const resposta = NextResponse.json({
       mensagem: "Código correto.",
     });
 
-    // Usuário está autenticado
     resposta.cookies.set("usuarioId", usuario.id.toString(), {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -78,8 +71,6 @@ export async function POST(request) {
       path: "/",
     });
 
-    // IMPORTANTE:
-    // Indica que o login foi concluído
     resposta.cookies.set("usuarioLogado", "true", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -87,7 +78,6 @@ export async function POST(request) {
       path: "/",
     });
 
-    // Remove o cookie temporário do 2FA
     resposta.cookies.delete("usuario2FA");
 
     return resposta;
