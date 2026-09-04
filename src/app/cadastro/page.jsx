@@ -20,7 +20,6 @@ export default function Cadastro() {
 
   const [csrfToken, setCsrfToken] = useState("");
 
-  // Busca o token CSRF
   useEffect(() => {
     async function obterCSRF() {
       try {
@@ -43,7 +42,6 @@ export default function Cadastro() {
         <h2>Cadastro</h2>
 
         <form action={formAction} className={styles.forms}>
-          {/* TOKEN CSRF */}
           <input type="hidden" name="csrfToken" value={csrfToken} />
 
           <label htmlFor="usuario">Crie o usuário</label>
