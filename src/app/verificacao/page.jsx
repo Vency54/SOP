@@ -71,6 +71,7 @@ export default function Verificacao() {
       setCarregando(false);
     }
   }
+
   return (
     <main className={styles.container}>
       <div className={styles.card}>
