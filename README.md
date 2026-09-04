@@ -140,7 +140,6 @@ http://localhost:3000
 
 ## Observação
 
-O arquivo `.env` não deve ser enviado para o GitHub.
 
 O banco SQLite é criado localmente através das migrations do Prisma.
 
