@@ -1,167 +1,36 @@
-# Login App
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Aplicação web simples de cadastro e login desenvolvida com Next.js, JavaScript, Prisma e SQLite.
+## Getting Started
 
-## Tecnologias
+First, run the development server:
 
-- Next.js
-- JavaScript
-- Prisma 6.16.2
-- SQLite
-- React
-
-## Requisitos
-
-Antes de executar o projeto, tenha instalado:
-
-- Node.js
-- npm
-
-Verifique no terminal:
-
-node --version
-npm --version
-
-## Instalação
-
-Entre na pasta do projeto:
-
-cd login-app
-
-Instale as dependências:
-
-npm install
-
-## Configuração do banco
-
-O projeto utiliza SQLite através do Prisma.
-
-Confira se existe o arquivo .env na raiz do projeto:
-
-DATABASE_URL="file:./dev.db"
-
-Depois execute:
-
-npx prisma migrate dev
-
-Gere o Prisma Client:
-
-npx prisma generate
-
-O banco será criado em:
-
-prisma/dev.db
-
-## Executando o projeto
-
-Inicie o servidor:
-
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Depois acesse:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-http://localhost:3000
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-## Páginas
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Login
+## Learn More
 
-/login
+To learn more about Next.js, take a look at the following resources:
 
-Permite entrar utilizando um usuário cadastrado.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Cadastro
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-/cadastro
+## Deploy on Vercel
 
-Permite criar um novo usuário.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Home
-
-/
-
-A Home é protegida e só pode ser acessada depois do login.
-
-### Logout
-
-O botão Sair remove o estado de login e redireciona o usuário para:
-
-/login
-
-## Estrutura do projeto
-
-login-app/
-├── prisma/
-│   ├── dev.db
-│   ├── schema.prisma
-│   └── migrations/
-│
-├── src/
-│   ├── app/
-│   │   ├── cadastro/
-│   │   │   ├── page.jsx
-│   │   │   └── CriarUsuario.js
-│   │   │
-│   │   ├── login/
-│   │   │   ├── page.jsx
-│   │   │   └── actions.js
-│   │   │
-│   │   ├── logout/
-│   │   │   └── actions.js
-│   │   │
-│   │   └── page.jsx
-│   │
-│   └── lib/
-│       └── prisma.js
-│
-├── .env
-├── package.json
-└── README.md
-
-## Fluxo da aplicação
-
-Login
-  ↓
-Verificação do usuário
-  ↓
-Cookie de autenticação
-  ↓
-Home
-  ↓
-Logout
-  ↓
-Login
-
-## Prisma Studio
-
-Para visualizar os usuários cadastrados no banco:
-
-npx prisma studio
-
-## Comandos principais
-
-Instalar dependências:
-
-npm install
-
-Criar ou atualizar o banco:
-
-npx prisma migrate dev
-
-Gerar Prisma Client:
-
-npx prisma generate
-
-Iniciar aplicação:
-
-npm run dev
-
-Abrir Prisma Studio:
-
-npx prisma studio
-
-## Observação
-
-Este projeto foi desenvolvido como uma aplicação de estudo.
-
-A implementação atual de autenticação deve ser aprimorada antes de ser utilizada em produção, especialmente no armazenamento e tratamento das senhas e no gerenciamento de sessões.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
