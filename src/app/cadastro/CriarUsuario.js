@@ -13,7 +13,6 @@ export async function criarUsuario(prevState, formData) {
 
   const csrfTokenCookie = cookieStore.get("csrfToken")?.value;
 
-  // Verificação CSRF
   if (!compararTokens(csrfToken, csrfTokenCookie)) {
     return {
       message: "Token CSRF inválido.",
