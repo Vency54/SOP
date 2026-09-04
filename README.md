@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Login - Next.js
 
-## Getting Started
+Projeto desenvolvido em Next.js com JavaScript, Prisma e SQLite.
 
-First, run the development server:
+## Requisitos
+
+É necessário ter instalado:
+
+- Node.js
+- npm
+
+Para verificar:
+
+```bash
+node -v
+npm -v
+```
+
+## 1. Baixar o projeto
+
+Abra o terminal e execute:
+
+```bash
+git clone https://github.com/Vency54/SOP.git
+```
+
+Entre na pasta:
+
+```bash
+cd SOP
+```
+
+Para utilizar a versão protegida:
+
+```bash
+git checkout Protegida
+```
+
+## 2. Instalar as dependências
+
+Execute:
+
+```bash
+npm install
+```
+
+## 3. Configurar o banco de dados
+
+Crie um arquivo chamado `.env` na raiz do projeto.
+
+Dentro dele, coloque:
+
+```env
+DATABASE_URL="file:./dev.db"
+```
+
+## 4. Criar o banco de dados
+
+Execute:
+
+```bash
+npx prisma migrate dev
+```
+
+Depois:
+
+```bash
+npx prisma generate
+```
+
+Esses comandos irão criar o banco SQLite e gerar o Prisma Client.
+
+## 5. Executar o projeto
+
+Execute:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Depois abra o navegador e acesse:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura do projeto
 
-## Learn More
+```text
+SOP/
+├── prisma/
+├── public/
+├── src/
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Tecnologias utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js
+- React
+- JavaScript
+- Prisma
+- SQLite
+- CSS Modules
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Comandos principais
 
-## Deploy on Vercel
+Instalar dependências:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Gerar Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Criar/atualizar banco:
+
+```bash
+npx prisma migrate dev
+```
+
+Executar o projeto:
+
+```bash
+npm run dev
+```
+
+Acessar o sistema:
+
+```text
+http://localhost:3000
+```
+
+## Observação
+
+
+O banco SQLite é criado localmente através das migrations do Prisma.
+
+Caso seja uma instalação nova, execute os comandos na seguinte ordem:
+
+```bash
+npm install
+npx prisma migrate dev
+npx prisma generate
+npm run dev
+```
