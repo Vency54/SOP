@@ -49,8 +49,8 @@ export async function fazerLogin(prevState, formData) {
     },
   });
 
-  console.log("Usuário:", user.usuario);
-  console.log("2FA ativo:", user.ativo2FA);
+  console.log("Usuário digitado:", usuario.toString());
+  console.log("Resultado da busca:", user);
 
   // Usuário ou senha incorretos
   if (!user || user.senha !== senha.toString()) {
@@ -69,6 +69,9 @@ export async function fazerLogin(prevState, formData) {
       tempo: contador >= 5 ? 30 : 0,
     };
   }
+
+  console.log("Usuário:", user.usuario);
+  console.log("2FA ativo:", user.ativo2FA);
 
   // Login correto → remove contador
   cookieStore.delete("tentativas");
