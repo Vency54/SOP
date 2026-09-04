@@ -25,7 +25,6 @@ export default function Login() {
   const [tick, setTick] = useState(0);
   const [csrfToken, setCsrfToken] = useState("");
 
-  // Busca o token CSRF
   useEffect(() => {
     async function obterCSRF() {
       try {
@@ -71,7 +70,6 @@ export default function Login() {
         <h2>Login</h2>
 
         <form action={formAction} className={styles.forms}>
-          {/* TOKEN CSRF */}
           <input type="hidden" name="csrfToken" value={csrfToken} />
 
           <label htmlFor="usuario">Usuário</label>
