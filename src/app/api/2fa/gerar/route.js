@@ -10,7 +10,6 @@ export async function POST(request) {
   try {
     const cookieStore = await cookies();
 
-    // Verificação CSRF
     const csrfToken = request.headers.get("X-CSRF-Token");
     const csrfTokenCookie = cookieStore.get("csrfToken")?.value;
 
@@ -43,8 +42,6 @@ export async function POST(request) {
       );
     }
 
-    // Se já existe um segredo e o 2FA ainda não foi ativado,
-    // reutiliza o mesmo segredo.
     let segredo = usuario.segredo2FA;
 
     if (!segredo || usuario.ativo2FA) {
