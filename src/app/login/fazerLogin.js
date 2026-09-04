@@ -23,17 +23,14 @@ export async function fazerLogin(prevState, formData) {
   const usuario = formData.get("usuario");
   const senha = formData.get("senha");
 
-  // Verifica se os campos foram preenchidos
   if (!usuario || !senha) {
     return {
       message: "Preencha todos os campos",
     };
   }
 
-  // Recupera o número de tentativas
   let contador = Number(cookieStore.get("tentativas")?.value || 0);
 
-  // Bloqueia depois de 5 tentativas
   if (contador >= 5) {
     return {
       message: "Você atingiu o limite de tentativas",
@@ -42,7 +39,6 @@ export async function fazerLogin(prevState, formData) {
     };
   }
 
-  // Procura o usuário no banco
   const user = await prisma.user.findUnique({
     where: {
       usuario: usuario.toString(),
@@ -52,7 +48,6 @@ export async function fazerLogin(prevState, formData) {
   console.log("Usuário digitado:", usuario.toString());
   console.log("Resultado da busca:", user);
 
-  // Usuário ou senha incorretos
   if (!user || user.senha !== senha.toString()) {
     contador++;
 
@@ -73,20 +68,14 @@ export async function fazerLogin(prevState, formData) {
   console.log("Usuário:", user.usuario);
   console.log("2FA ativo:", user.ativo2FA);
 
-  // Login correto → remove contador
   cookieStore.delete("tentativas");
 
-  // Guarda o ID do usuário logado
   cookieStore.set("usuarioId", user.id.toString(), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
   });
-
-  // =================================
-  // VERIFICAÇÃO DO 2FA
-  // =================================
 
   if (user.ativo2FA) {
     cookieStore.set("usuario2FA", user.id.toString(), {
@@ -99,10 +88,6 @@ export async function fazerLogin(prevState, formData) {
 
     redirect("/verificacao");
   }
-
-  // =================================
-  // USUÁRIO SEM 2FA
-  // =================================
 
   cookieStore.set("usuarioLogado", "true", {
     httpOnly: true,
